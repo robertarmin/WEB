@@ -1,0 +1,74 @@
+<html>
+<head>
+  <title>SOAP JavaScript Client Test</title>
+
+    <script type="text/javascript">
+    function soap() {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open('GET', 'test.fidely.net/fnet3web/interfaces', true);
+    
+
+    // build SOAP request
+    var sr = 
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<soapenv:Envelope' +
+     'xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"; ' +
+     'xmlns:fid="http://FidelyNET3_WS_01_65_00.Local" ' +
+     'xmlns:fid1="http://FidelyNET3_SW_01_65_00">' +
+   '<soapenv:Header/>' +
+   '<soapenv:Body>' +
+      '<fid:SearchCustomerByPersonalDataRequest>' +
+      '<fid:sessionID>237c3063-c38c-428d-8df1-487df09b1041</fid:sessionID>' +
+      '<fid:name></fid:name>' +
+         '<fid:surname></fid:surname>' +
+         '<fid:birthdate></fid:birthdate>'+
+         '<fid:birthdateDay></fid:birthdateDay>'+
+         '<fid:birthdateMonth></fid:birthdateMonth>'+
+         '<fid:birthdateYear></fid:birthdateYear>'+
+         '<fid:email>pruebahotssonactiv@yopmail.com</fid:email>'+
+         '<fid:cellphone></fid:cellphone>'+
+         '<fid:facebookId></fid:facebookId>'+
+         '<fid:card></fid:card>'+
+         '<fid:pagination>'+
+            '<fid1:initLimit></fid1:initLimit>'+
+            '<fid1:rowCount></fid1:rowCount>'+
+            '<fid1:orders>'+
+               '<fid1:criteria>?</fid1:criteria>'+
+               '<fid1:columnName>?</fid1:columnName>'+
+            '</fid1:orders>'+
+            '<fid1:recordsTotal>?</fid1:recordsTotal>'+
+            '<fid1:actualPage>?</fid1:actualPage>'+
+            '<fid1:totalPages>?</fid1:totalPages>'+
+        '</fid:pagination>'+
+      '</fid:SearchCustomerByPersonalDataRequest>'+
+   '</soapenv:Body>'+
+'</soapenv:Envelope>';
+
+xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        alert(xmlhttp.responseText);
+                         alert('done. use firebug/console to see network response');
+                    }
+                }
+            }
+
+            xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+            xmlhttp.send(sr);
+
+          }
+    </script>
+ 
+</head>
+
+
+<body>
+  <form name="Demo" action="" method="post">
+    <div>
+      <input type="button" value="Soap" onclick="soap();"/>
+    </div>
+
+  </form>
+</body>
+  
+</html>
